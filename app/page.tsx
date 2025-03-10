@@ -16,6 +16,7 @@ export default async function Home() {
         <div>
           <p>Hello {user.email}</p>
           <form>
+            <Link href="/create-product">Create Product</Link>
             <button formAction={signOutAction}>Sign Out</button>
           </form>
         </div>
