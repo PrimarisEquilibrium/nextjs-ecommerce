@@ -21,7 +21,7 @@ export default async function Home() {
           </form>
         </div>
       ) : (
-        <Link href="/login">Sign Up</Link>
+        <Link href="/sign-up">Sign Up</Link>
       )}
     </div>
   );
