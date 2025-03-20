@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { signUpAction } from "../actions";
 
 export default function SignUp() {
@@ -8,6 +9,7 @@ export default function SignUp() {
       <label htmlFor="password">Password:</label>
       <input id="password" name="password" type="password" required />
       <button formAction={signUpAction}>Sign up</button>
+      <Link href="/sign-in">Already have an account? Sign in!</Link>
     </form>
   );
 }

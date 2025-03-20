@@ -10,6 +10,12 @@ const ProductSchema = z.object({
     .refine((file) => file.type.startsWith("image/"), "Must be an image"),
 });
 
+const imageCompressionOptions = {
+  maxSizeMB: 1,
+  maxWidthOrHeight: 1920,
+  useWebWorker: true,
+}
+
 export default async function CreateProduct() {
   const onSubmit = async (formData: FormData) => {
     "use server";
@@ -23,8 +29,6 @@ export default async function CreateProduct() {
         image: formData.get("image"),
       });
 
-      console.log("Validated data: ", parsedProduct);
-
       const supabase = await createClient();
 
       // Get the authenticated user
@@ -34,7 +38,7 @@ export default async function CreateProduct() {
       if (!user) {
         throw new Error("User is not authenticated");
       }
-
+      
       // Upload the image to a supabase bucket and get the URL
       let imageUrl = null;
       if (parsedProduct.image) {
